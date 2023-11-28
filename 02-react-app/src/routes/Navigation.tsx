@@ -2,17 +2,23 @@ import { BrowserRouter } from "react-router-dom";
 import { Routes, Route, NavLink, Navigate } from "react-router-dom";
 
 import logo from "../logo.svg";
-import { LazyPage1, LazyPage2, LazyPage3 } from "../01-lazyload/pages";
+import { routes } from "./routes";
+import { NavItemLi } from "../01-lazyload/components/NavItemLi";
+import { Suspense } from "react";
 
 export const Navigation = () => {
   return (
     <>
-      <BrowserRouter>
-        <div className="main-layout">
-          <nav>
-            <img src={logo} alt="React logo" />
-            <ul>
-              <li>
+      <Suspense fallback={<span>Loading...</span>}>
+        <BrowserRouter>
+          <div className="main-layout">
+            <nav>
+              <img src={logo} alt="React logo" />
+              <ul>
+                {routes.map((route) => {
+                  return <NavItemLi to={route.to} name={route.name} />;
+                })}
+                {/* <li>
                 <NavLink
                   to="/lazy1"
                   className={({ isActive }) => (isActive ? "nav-active" : "")}
@@ -35,17 +41,24 @@ export const Navigation = () => {
                 >
                   Lazy 3
                 </NavLink>
-              </li>
-            </ul>
-          </nav>
-          <Routes>
-            <Route path="lazy1" element={<LazyPage1/>} />
-            <Route path="lazy2" element={<LazyPage2/>} />
-            <Route path="lazy3" element={<LazyPage3/>} />
-            <Route path="/*" element={<Navigate to="/lazy1" replace />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
+              </li> */}
+              </ul>
+            </nav>
+            <Routes>
+              {routes.map(({ path, Component: Component }) => {
+                return <Route path={path} element={<Component />} />;
+              })}
+              {/* <Route path="lazy1" element={<LazyPage1 />} />
+            <Route path="lazy2" element={<LazyPage2 />} />
+            <Route path="lazy3" element={<LazyPage3 />} /> */}
+              <Route
+                path="/*"
+                element={<Navigate to={routes[0].to} replace />}
+              />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </Suspense>
     </>
   );
 };
