@@ -1,15 +1,15 @@
 import { NavLink } from "react-router-dom";
 
 interface items {
-  to: string,
-  name: string
+  path: string;
+  name: string;
 }
 
-export const NavItemLi = ({to, name}: items) => {
+export const NavItemLi = ({ path, name }: items) => {
   return (
-    <li key={to}>
+    <li key={path}>
       <NavLink
-        to={to}
+        to={path}
         className={({ isActive }) => (isActive ? "nav-active" : "")}
       >
         {name}

@@ -1,10 +1,9 @@
-import { BrowserRouter } from "react-router-dom";
-import { Routes, Route, NavLink, Navigate } from "react-router-dom";
 
 import logo from "../logo.svg";
-import { routes } from "./routes";
 import { NavItemLi } from "../01-lazyload/components/NavItemLi";
 import { Suspense } from "react";
+import routes from "./routes";
+import { BrowserRouter, NavLink, Navigate, Route, Routes } from 'react-router-dom';
 
 export const Navigation = () => {
   return (
@@ -15,39 +14,27 @@ export const Navigation = () => {
             <nav>
               <img src={logo} alt="React logo" />
               <ul>
-                {routes.map((route) => {
-                  return <NavItemLi to={route.to} name={route.name} />;
-                })}
-                {/* <li>
-                <NavLink
-                  to="/lazy1"
-                  className={({ isActive }) => (isActive ? "nav-active" : "")}
-                >
-                  Lazy 1
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/lazy2"
-                  className={({ isActive }) => (isActive ? "nav-active" : "")}
-                >
-                  Lazy 2
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/lazy3"
-                  className={({ isActive }) => (isActive ? "nav-active" : "")}
-                >
-                  Lazy 3
-                </NavLink>
-              </li> */}
+                {routes.map(({ to, name }) => {
+                  return <NavItemLi path={to} name={name} />;
+                })} 
+                {/* {routes.map(({ to, name }) => (
+                  <li key={to}>
+                    <NavLink
+                      to={to}
+                      className={({ isActive }) =>
+                        isActive ? "nav-active" : ""
+                      }
+                    >
+                      {name}
+                    </NavLink>
+                  </li>
+                ))} */}
               </ul>
             </nav>
             <Routes>
-              {routes.map(({ path, Component: Component }) => {
-                return <Route path={path} element={<Component />} />;
-              })}
+              {routes.map(({ path, Component }) => (
+                <Route key={path} path={path} element={<Component />} />
+              ))}
               {/* <Route path="lazy1" element={<LazyPage1 />} />
             <Route path="lazy2" element={<LazyPage2 />} />
             <Route path="lazy3" element={<LazyPage3 />} /> */}
@@ -62,3 +49,5 @@ export const Navigation = () => {
     </>
   );
 };
+
+export default Navigation;
