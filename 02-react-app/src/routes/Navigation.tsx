@@ -41,7 +41,7 @@ export const Navigation = () => {
             <Route path="home" element={<h1>Home</h1>} />
             <Route path="about" element={<h1>About</h1>} />
             <Route path="users" element={<h1>Users</h1>} />
-            <Route path="/*" element={<Navigate to="/lazy1" replace />} />
+            <Route path="/*" element={<Navigate to="/home" replace />} />
           </Routes>
         </div>
       </BrowserRouter>
