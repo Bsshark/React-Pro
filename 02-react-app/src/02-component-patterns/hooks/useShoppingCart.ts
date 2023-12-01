@@ -15,16 +15,16 @@ export const useShoppingCart = () => {
 		product: Product;
 	}) => {
 		setShoppingCart((oldShoppingCart) => {
-			/* if (quantity === 0) {
+			if (quantity === 0) {
 				const { [product.id]: toDelete, ...newCart } = oldShoppingCart;
 				return newCart;
 			}
 			return {
 				...oldShoppingCart,
 				[product.id]: { ...product, quantity },
-			}; */
+			};
 
-			const productInCart: ProductInCart = oldShoppingCart[product.id] || {
+			/* const productInCart: ProductInCart = oldShoppingCart[product.id] || {
 				...product,
 				quantity: 0,
 			};
@@ -38,7 +38,7 @@ export const useShoppingCart = () => {
 			}
 
 			const { [product.id]: toDelete, ...newCart } = oldShoppingCart;
-			return newCart;
+			return newCart; */
 		});
 	};
 
