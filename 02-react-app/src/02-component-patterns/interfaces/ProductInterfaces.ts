@@ -30,3 +30,8 @@ export interface onChangeArgs {
 export interface ProductInCart extends Product {
 	quantity: number;
 }
+
+export interface InitialValues {
+	quantity?: number;
+	maxQuantity?: number;
+}

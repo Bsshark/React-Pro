@@ -2,6 +2,7 @@ import { CSSProperties, ReactElement, createContext } from "react";
 
 import { useProduct } from "../hooks/useProduct";
 import {
+	InitialValues,
 	Product,
 	ProductContextProps,
 	onChangeArgs,
@@ -14,11 +15,13 @@ const { Provider } = ProductContext;
 
 export interface Props {
 	product: Product;
-	children?: ReactElement | ReactElement[];
+	/* children?: ReactElement | ReactElement[]; */
+	children: (mensaje: string) => JSX.Element;
 	className?: string;
 	style?: CSSProperties;
 	onChange?: (args: onChangeArgs) => void;
 	value?: number;
+	initialValues?: InitialValues;
 }
 
 export const ProductCard = ({
@@ -28,8 +31,14 @@ export const ProductCard = ({
 	style,
 	onChange,
 	value,
+	initialValues,
 }: Props) => {
-	const { counter, increaseBy } = useProduct({ onChange, product, value });
+	const { counter, increaseBy } = useProduct({
+		onChange,
+		product,
+		value,
+		initialValues,
+	});
 	return (
 		<Provider
 			value={{
@@ -39,7 +48,7 @@ export const ProductCard = ({
 			}}
 		>
 			<div className={`${styles.productCard} ${className}`} style={style}>
-				{children}
+				{children("hola mundo")}
 			</div>
 		</Provider>
 	);
