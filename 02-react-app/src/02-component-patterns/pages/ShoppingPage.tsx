@@ -5,49 +5,15 @@ import {
 	ProductImage,
 	ProductTitle,
 } from "../components/";
-import { Product } from "../interfaces/ProductInterfaces";
 import "../styles/custom-styles.css";
+import { useShoppingCart } from "../hooks/useShoppingCart";
+import { products } from "../data/products";
 
-const product1 = {
-	id: "1",
-	title: "Coffee Mug - Card",
-	img: "./coffee-mug.png",
-};
-const product2 = {
-	id: "2",
-	title: "Coffee Mug - Meme",
-	img: "./coffee-mug2.png",
-};
 
-const products: Product[] = [product1, product2];
-
-interface ProductInCart extends Product {
-	quantity: number;
-}
 
 export const ShoppingPage = () => {
-	const [shoppingCart, setShoppingCart] = useState<{
-		[key: string]: ProductInCart;
-	}>({});
-
-	const onProductQuantityChange = ({
-		quantity,
-		product,
-	}: {
-		quantity: number;
-		product: Product;
-	}) => {
-		setShoppingCart((oldShoppingCart) => {
-			if (quantity < 1) {
-				const { [product.id]: toDelete, ...newCart } = oldShoppingCart;
-				return newCart;
-			}
-			return {
-				...oldShoppingCart,
-				[product.id]: { ...product, quantity },
-			};
-		});
-	};
+	
+	const { shoppingCart, onProductQuantityChange } = useShoppingCart();
 
 	return (
 		<div>
