@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
 	ProductButtons,
 	ProductCard,
@@ -24,7 +23,7 @@ export const ShoppingPage = () => {
 					maxQuantity: 10,
 				}}
 			>
-				{(mensaje) => (
+				{({reset, increaseBy, isMaxCountReached, count}) => (
 					<>
 						<ProductImage
 							className="custom-image"
@@ -32,7 +31,11 @@ export const ShoppingPage = () => {
 						/>
 						<ProductTitle className="text-bold" />
 						<ProductButtons className="custom-buttons" />
-						<h1>{mensaje}</h1>
+						<button onClick={reset}>Reset</button>
+						<button onClick={() => increaseBy(-2)}>-2</button>
+
+						<button style={{visibility: isMaxCountReached?'hidden':'visible'}}>+2</button>
+						<span>{count}</span>
 					</>
 				)}
 			</ProductCard>

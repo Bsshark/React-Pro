@@ -60,3 +60,10 @@
 	background-color: white;
 	color: black;
 }
+
+.disabled {
+	border-color: grey !important;
+	border-left: white 1px solid white;
+	color: gray !important;
+	pointer-events: none;
+}
