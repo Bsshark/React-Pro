@@ -1,0 +1,70 @@
+[
+	{
+		"type": "input",
+		"name": "firstName",
+		"placeholder": "Tu nombre",
+		"label": "Nombre",
+		"value": "",
+		"validations": [
+			{
+				"type": "required"
+			},
+			{
+				"type": "minLength",
+				"value": 5
+			}
+		]
+	},
+	{
+		"type": "input",
+		"name": "lastName",
+		"placeholder": "Tu apellido",
+		"label": "Apellido",
+		"value": "",
+		"validations": [
+			{
+				"type": "required"
+			}
+		]
+	},
+	{
+		"type": "input",
+		"name": "email",
+		"placeholder": "Tu correo",
+		"label": "Correo",
+		"value": "",
+		"validations": [
+			{
+				"type": "required"
+			},
+            {
+                "type": "email"
+            }
+		]
+	},
+	{
+		"type": "select",
+		"name": "favGame",
+		"label": "Juego favorito",
+		"value": "",
+		"options": [
+			{
+				"id": 1,
+				"title": "World of Warcraft"
+			},
+			{
+				"id": 2,
+				"title": "League of Legends"
+			},
+			{
+				"id": 3,
+				"title": "Minecraft"
+			}
+		],
+		"validations": [
+			{
+				"type": "required"
+			}
+		]
+	}
+]
